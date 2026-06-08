@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+instance/
+*.db
+*.db-journal
+.DS_Store
+static/uploads/avatars/*
+static/uploads/carousels/*
+static/uploads/events/*
+!static/uploads/avatars/.gitkeep
+!static/uploads/carousels/.gitkeep
+!static/uploads/events/.gitkeep

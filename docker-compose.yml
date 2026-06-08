@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    container_name: web-template
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./instance:/app/instance       # SQLite database
+      - ./static/uploads:/app/static/uploads  # User uploads
+    env_file:
+      - .env
+    environment:
+      - FLASK_ENV=production

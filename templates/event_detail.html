@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event.title }} - {{ config.APP_NAME }}{% endblock %}
+{% block og_title %}{{ event.title }}{% endblock %}
+{% block og_description %}{{ event.description[:160] if event.description else '' }}{% endblock %}
+
+{% block content %}
+<article class="container mx-auto px-4 py-12 max-w-3xl">
+    <a href="{{ url_for('main.events') }}" class="text-primary hover:text-pink-700 text-sm font-medium mb-6 inline-block">
+        ← Back to Events
+    </a>
+
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        {% if event.image %}
+        <img src="{{ url_for('static', filename='uploads/events/' + event.image) }}"
+             alt="{{ event.title }}" class="w-full h-64 md:h-80 object-cover">
+        {% else %}
+        <div class="w-full h-64 bg-gradient-to-br from-primary to-pink-400 flex items-center justify-center">
+            <span class="text-white text-6xl font-display">{{ event.title[0] }}</span>
+        </div>
+        {% endif %}
+
+        <div class="p-8">
+            <h1 class="text-3xl font-semibold mb-4">{{ event.title }}</h1>
+
+            {% if event.event_date %}
+            <p class="text-gray-400 text-sm mb-6">
+                📅 {{ event.event_date.strftime('%B %d, %Y at %I:%M %p') }}
+            </p>
+            {% endif %}
+
+            <div class="prose max-w-none text-gray-700 leading-relaxed">
+                {{ event.description or 'No description available.' }}
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}

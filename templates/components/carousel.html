@@ -1,0 +1,35 @@
+<!-- Carousel Component (Splide.js) -->
+{% if carousels and carousels|length > 0 %}
+<div class="splide" x-data="carousel()" x-init="init()">
+    <div class="splide__track">
+        <ul class="splide__list">
+            {% for slide in carousels %}
+            <li class="splide__slide">
+                <div class="relative h-[300px] md:h-[450px]">
+                    <img src="{{ url_for('static', filename='uploads/carousels/' + slide.image) }}"
+                         alt="{{ slide.title or '' }}"
+                         class="w-full h-full object-cover">
+                    {% if slide.title %}
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                        <div class="container mx-auto px-4 pb-8">
+                            <h2 class="text-white text-2xl md:text-4xl font-display">{{ slide.title }}</h2>
+                            {% if slide.link %}
+                            <a href="{{ slide.link }}"
+                               class="inline-block mt-3 bg-primary text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition">
+                                Learn More
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- Splide CSS + JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide-core.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+{% endif %}

@@ -1,0 +1,19 @@
+# fly.toml - Fly.io configuration
+app = "quscore-template"
+primary_region = "iad"
+
+[build]
+
+[env]
+  FLASK_ENV = 'production'
+
+[http_service]
+  internal_port = 5000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[vm]]
+  size = 'shared-cpu-1x'
+  memory = '256mb'

@@ -1,0 +1,46 @@
+/* Custom styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Smooth transitions */
+a, button {
+    transition: all 0.2s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ee2c7a;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #d4256a;
+}
+
+/* Splide overrides */
+.splide__pagination__page {
+    background: #d1d5db !important;
+    opacity: 1 !important;
+}
+
+.splide__pagination__page.is-active {
+    background: #ee2c7a !important;
+    transform: scale(1.3);
+}
