@@ -1,47 +1,52 @@
-# Fly.io Deployment Guide
+# Deployment Guide
 
-## Prerequisites
-- Fly.io account (sign up at https://fly.io)
-- Credit card on file (free tier won't charge)
+## Render.com (Current)
 
-## Steps
+**Live URL:** https://flask-test-9fzb.onrender.com/
 
+### How to Deploy
+1. Push code to GitHub: `https://github.com/cosaldi/flask-template`
+2. Render auto-deploys from `render.yaml`
+3. Free tier — sleeps after 15min inactivity (~30s cold start)
+
+### Useful Commands
 ```bash
-# 1. Install flyctl
-curl -L https://fly.io/install.sh | sh
+# View logs on Render dashboard
+# https://dashboard.render.com
 
-# 2. Add to PATH (add to ~/.bashrc for persistence)
-export FLYCTL_INSTALL="$HOME/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
-
-# 3. Sign up (opens browser)
-fly auth signup
-
-# 4. Login
-fly auth login
-
-# 5. Go to project
-cd /home/cosaldi/Public/armbian-hdd0/idlasoc/hermes-agent/hermes/developer/web-template
-
-# 6. Generate a secret key
-python3 -c "import secrets; print(secrets.token_hex(32))"
-
-# 7. Set the secret on Fly.io
-fly secrets set SECRET_KEY=your-generated-key-here
-
-# 8. Deploy!
-fly launch --copy-config --yes
+# Redeploy (after pushing to GitHub)
+git add .
+git commit -m "your changes"
+git push origin main
+# Render auto-deploys on push
 ```
 
-## After Deploy
-- Your app will be at: `https://web-template.fly.dev`
-- Share this URL with friends
+---
 
-## Useful Commands
+## Fly.io (Alternative)
+
 ```bash
-fly status          # Check app status
-fly logs            # View logs
-fly ssh console     # SSH into the container
-fly deploy          # Redeploy after changes
-fly scale memory 512  # Increase memory if needed
+fly auth login
+fly deploy
+fly status
+fly logs
+```
+
+---
+
+## Docker (Local / armbian)
+
+```bash
+cp .env.example .env
+# Edit .env with a real SECRET_KEY
+docker compose up -d
+# Access at http://localhost:5000
+```
+
+---
+
+## Generate SECRET_KEY
+
+```bash
+python3 -c "import secrets; print(secrets.token_hex(32))"
 ```

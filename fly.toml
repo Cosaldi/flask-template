@@ -1,5 +1,5 @@
 # fly.toml - Fly.io configuration
-app = "quscore-template"
+app = 'flask-template'
 primary_region = "iad"
 
 [build]
